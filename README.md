@@ -18,8 +18,7 @@ Instances will be filtered by the `Tag:Name` content
 Usage:
 >  `awscli -name <TAG CONTENT>`
 
-It's okay to use willcard `*` or `?` into the tag content.
-
+It's okay to use wildcard `*` or `?` into the tag content.
 
 
 > `awscli -name testContent*`
