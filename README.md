@@ -23,6 +23,7 @@ It's okay to use willcard `*` or `?` into the tag content.
 
 
 > `awscli -name testContent*`
+
 > `awscli -name testEnvironment?_testQualifier?`
 
 
