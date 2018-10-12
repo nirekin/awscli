@@ -18,11 +18,11 @@ Instances will be filtered by the `Tag:Name` content
 Usage:
 >  `awscli -name <TAG CONTENT>`
 
-It's okay to use willcard `*` or `?` into the tag content.
-
+It's okay to use wildcard `*` or `?` into the tag content.
 
 
 > `awscli -name testContent*`
+
 > `awscli -name testEnvironment?_testQualifier?`
 
 
@@ -34,9 +34,9 @@ Example:
 > $ ./awscli -name testEnv*
 > Working with tagged name:testEnv*
 > Located instances matching the tag :3
-> testEnvironment4_testQualifier4 i-07789dcc5fa55752b running
-> testEnvironment4_testQualifier4 i-0d699bfba90daf8da running
-> testEnvironment4_testQualifier4 i-0d7ee2f1c879fc628 running
+> testEnvironment4_testQualifier4 i-07789dcc5fa55752b running 18.202.79.xxx
+> testEnvironment4_testQualifier4 i-0d699bfba90daf8da running 18.202.79.xxx
+> testEnvironment4_testQualifier4 i-0d7ee2f1c879fc628 running 18.202.79.xxx
 ```
 
 This output shows: 
@@ -54,6 +54,7 @@ This output shows:
 Examples:
 
 > `awscli -name testContent* -cmd STOP`
+
 > `awscli -name testContent* -cmd TERMINATE`
 ****
 
