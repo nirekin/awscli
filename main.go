@@ -16,8 +16,8 @@ func main() {
 	var fName string
 	var fCommand string
 
-	flag.StringVar(&fCommand, "cmd", "-", "the command to run : STOP, KILL")
-	flag.StringVar(&fName, "name", "*", "the desired mchine tagged name")
+	flag.StringVar(&fCommand, "cmd", "-", "the command to run :STOP, TERMINATE")
+	flag.StringVar(&fName, "name", "*", "the desired machine tagged name")
 	flag.Parse()
 
 	checkEnv(env_region, env_key_id, env_key)
@@ -48,7 +48,7 @@ func main() {
 
 	resL := len(result.Reservations)
 	if resL > 0 {
-		fmt.Printf("Located instances : %d\n", len(result.Reservations[0].Instances))
+		fmt.Printf("Located instances matching the tag :%d\n", len(result.Reservations[0].Instances))
 		for _, i := range result.Reservations[0].Instances {
 			var nt string
 			for _, t := range i.Tags {
@@ -61,7 +61,7 @@ func main() {
 
 		}
 	} else {
-		fmt.Println("No instance located")
+		fmt.Println("No instance match the tag...")
 	}
 
 	if resL > 0 && len(result.Reservations[0].Instances) > 0 && fCommand != "" {
@@ -71,19 +71,19 @@ func main() {
 			if confirm(fCommand) {
 				stop(ec2Cli, result.Reservations[0].Instances)
 			}
-		case "KILL":
+		case "TERMINATE":
 			if confirm(fCommand) {
 				kill(ec2Cli, result.Reservations[0].Instances)
 			}
 
 		default:
-			fmt.Printf("Unknown command  :%s", fCommand)
+			fmt.Printf("Unknown command :%s", fCommand)
 		}
 	}
 }
 
 func confirm(c string) bool {
-	fmt.Printf("Sure you want to %s all the previously listed instances (Y/n)", c)
+	fmt.Printf("You sure you want to %s all the previously listed instances (Y/n)", c)
 	reader := bufio.NewReader(os.Stdin)
 	text, _ := reader.ReadString('\n')
 	return strings.TrimSpace(text) == "Y"
