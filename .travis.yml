@@ -16,7 +16,7 @@ script:
   - bash xcross.sh
   - for f in  awscli-windows-*; do mv -v -- "$f" "$f.exe"; done;
   - echo "Generated files"
-  - ls -al cli-*
+  - ls -al awscli-*
 
 deploy:
   provider: releases
