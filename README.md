@@ -44,6 +44,7 @@ This output shows:
 * The content of the `Tag:Name`
 * The instance id
 * The instance state
+* The public instance IP ( if available )
 
 ## Available commands
 
