@@ -16,11 +16,12 @@ func main() {
 	var fName string
 	var fCommand string
 
-	flag.StringVar(&fCommand, "cmd", "-", "the command to run :STOP, TERMINATE")
+	flag.StringVar(&fCommand, "cmd", "", "the command to run :STOP, TERMINATE")
 	flag.StringVar(&fName, "name", "*", "the desired machine tagged name")
 	flag.Parse()
 
 	checkEnv(env_region, env_key_id, env_key)
+	checkName(&fName)
 
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: session.SharedConfigEnable,
@@ -28,7 +29,7 @@ func main() {
 
 	ec2Cli := ec2.New(sess)
 
-	fmt.Println("Working with tagged name:%s", fName)
+	fmt.Printf("Working with tagged name:%s\n", fName)
 	sTag := "tag:Name"
 	inParam := &ec2.DescribeInstancesInput{
 		Filters: []*ec2.Filter{
@@ -47,21 +48,24 @@ func main() {
 	}
 
 	resL := len(result.Reservations)
+	fmt.Printf("Number of reservation :%d\n", resL)
 	if resL > 0 {
-		fmt.Printf("Located instances matching the tag :%d\n", len(result.Reservations[0].Instances))
-		for _, i := range result.Reservations[0].Instances {
-			var nt string
-			for _, t := range i.Tags {
-				if *t.Key == "Name" {
-					nt = *t.Value
-					break
+		for i, r := range result.Reservations {
+			fmt.Printf("Reservation index :%d\n", i)
+			fmt.Printf("Located instances matching the tag :%d\n", len(r.Instances))
+			for _, i := range r.Instances {
+				var nt string
+				for _, t := range i.Tags {
+					if *t.Key == "Name" {
+						nt = *t.Value
+						break
+					}
 				}
+				fmt.Println(nt, *i.InstanceId, *i.State.Name)
 			}
-			fmt.Println(nt, *i.InstanceId, *i.State.Name)
-
 		}
 	} else {
-		fmt.Println("No instance match the tag...")
+		fmt.Println("No matching instance...")
 	}
 
 	if resL > 0 && len(result.Reservations[0].Instances) > 0 && fCommand != "" {
@@ -96,5 +100,13 @@ func checkEnv(keys ...string) {
 			fmt.Printf("Missing environment variable %s", k)
 			os.Exit(1)
 		}
+	}
+}
+
+func checkName(n *string) {
+	fmt.Printf("The single \"*\" is not a valid search criteria")
+	if *n == "*" {
+		fmt.Println("The single \"*\" is not a valid search criteria")
+		os.Exit(1)
 	}
 }
