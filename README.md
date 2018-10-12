@@ -15,15 +15,18 @@
 
 Instances will be filtered by the `Tag:Name` content
 
-> usage `awscli -name <TAG CONTENT>` for the detail of all options.
+Usage:
+>  `awscli -name <TAG CONTENT>`
 
 It's okay to use willcard `*` or `?` into the tag content.
 
-> example `awscli -name testContent*`
-> example `awscli -name testEnvironment?_testQualifier?`
 
 
-Note : Without specifying any command it will just returned the list of EC2 intances matching thr given `TAG` content.
+> `awscli -name testContent*`
+> `awscli -name testEnvironment?_testQualifier?`
+
+
+Note : Without specifying any command it will just returned the list of EC2 intances matching the given `TAG` content.
 
 Example:
 
