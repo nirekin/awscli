@@ -34,9 +34,9 @@ Example:
 > $ ./awscli -name testEnv*
 > Working with tagged name:testEnv*
 > Located instances matching the tag :3
-> testEnvironment4_testQualifier4 i-07789dcc5fa55752b running
-> testEnvironment4_testQualifier4 i-0d699bfba90daf8da running
-> testEnvironment4_testQualifier4 i-0d7ee2f1c879fc628 running
+> testEnvironment4_testQualifier4 i-07789dcc5fa55752b running 18.202.79.xxx
+> testEnvironment4_testQualifier4 i-0d699bfba90daf8da running 18.202.79.xxx
+> testEnvironment4_testQualifier4 i-0d7ee2f1c879fc628 running 18.202.79.xxx
 ```
 
 This output shows: 
