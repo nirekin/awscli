@@ -13,9 +13,8 @@ install:
 - dep ensure -v
 
 script:
-  - go generate
   - bash xcross.sh
-  - for f in  cli-windows-*; do mv -v -- "$f" "$f.exe"; done;
+  - for f in  awscli-windows-*; do mv -v -- "$f" "$f.exe"; done;
   - echo "Generated files"
   - ls -al cli-*
 
@@ -23,10 +22,10 @@ deploy:
   provider: releases
   skip_cleanup: true	
   api_key:
-    secure: XeYIbWHmiU0R1u939Z9MfT6sTjWgnEwStCHlfYDloNk+SABczuEa+m1egqzX5c+I4TxcGKxVNs3USwtWfo5Y4nWtewC8e6aNXx75kEE/dOcSw80F9q2ciQ71eUR+hNEwUIGHowAHUfWHKptWEHK2Pv2p9p1QDBZ5cY0K5o51LKCvYElb5XAaXJUjBmsM36/QwuiYbJJe/k+pNeIkSaMSQ5f8Aed/Wz9ZnamB/iZTGefbjgEVdlqPdgts+7liJirtgUuw7ywzpI7W9OeQ/ZrnGDqht5BAR5+Y5ezeUpm3yDO6LhDpd/0svd3E4QD2YB66nQVtpmPiceSjRHbDqfVwsnhWb+YE1iuZ+ONi/iKyx8tBgO2P5r8JteXOmaStKkkJArY0guAloUhdc09qVKpqW/Vvgxwz5D62N+8UJHGECeaF1KmEDUwFWPbAmV5AlZn3sg1ciyQTj3H2C1nJYHWAeXtqc2Tk1BxwJXxX4/m+f7jRHPX12HMUM6Y92SB6jOPLRWeS6Nxz+vtb7VkeMSjuNr+XHmjJKTIWjAbBUKEKFmBoUfVCbrG/8NPX1i8KzORlE0yQhe/08xykF81FrX5UNU5zJav1i4NsSq/NPpRV33jBMUtcfyT/vbLUwI7ZJTKBKVQ6PiRmGl2ty/Wa2tA+mKVVKZzoqfPdBdVFfYg3gm0=
+    secure: rLbxgXXwjY8PZAyww0V1tGc+FOaVP15KuMPV/AkornjvDo5Jc4ET+HX5n9bDL2ZpkTtlAs+/pTFkx30BOuOpCK89ijOfLMCGIAjRNMGqMMdSawDO+BgF5FmvuLwfbxOlaMFFFz4bXV+HHJ5LY+hlQ/vzqhEhkOZJpTwtF2sAmpkjhE/NGyDKpZlbECFGxlx3bIn7ak9ScsTqZXnbOu89BoRvFv5PruLTbLyogn8nL4xbcvbB5mVQUVV1aSPubUmDUG4/AFHVgjK5JjFK1NybHHFWsZvAYzCaqPpjlK3a3FzdgP3Jlm3SLgG9ncK03zcS/Fh7fpIOECek5ZhvxqUnyzcfzEJt3HjY+Ux24H6OgQ5l6ytafvdcv2QOA2lhkK2tqjbNGYT7MMCA2rXBYwb0ilHDKLLEfp9qnkQIHq51m8p/8y1DTDnV6ux5naLjIphvHD+FEZV84ytrE/aSWB4PERFiWMiMThRZOHvIiNwXLPVVBc/YhOEs9FXlmRtGeE7gKpOqhjsB5m8iCHlj49e5y0v/gyEBYRoxbiKvllN3qDrDel35+j0Mz1lgPD2x+NLa2+42kR3dys7l7Kwymi5iLjpiktlH8h5aXwcj7vGVIThvjU7excwVskHhzwfXGX4J4wCbTT7jW3SDIN9Nvg9810Pb7TBYY+3zh9oX8R0+1ec=
   file_glob: true
   file:
-  - cli-*
+  - awscli-*
   on:
-    repo: lagoon-platform/cli
+    repo: nirekin/awscli
     tags: true
