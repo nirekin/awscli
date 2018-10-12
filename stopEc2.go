@@ -13,6 +13,10 @@ func stop(cli *ec2.EC2, is []*ec2.Instance) {
 	for _, i := range is {
 		if *i.State.Name == "stopped" {
 			fmt.Printf("Instance :%s already stopped \n", *i.InstanceId)
+		} else if *i.State.Name == "terminated" {
+			fmt.Printf("Instance :%s already terminated\n", *i.InstanceId)
+		} else if *i.State.Name == "shutting-down" {
+			fmt.Printf("Instance :%s already shutting-down\n", *i.InstanceId)
 		} else {
 			fmt.Printf("Stopping :%s\n", *i.InstanceId)
 			input := &ec2.StopInstancesInput{

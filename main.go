@@ -21,7 +21,6 @@ func main() {
 	flag.Parse()
 
 	checkEnv(env_region, env_key_id, env_key)
-	checkName(&fName)
 
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: session.SharedConfigEnable,
@@ -106,13 +105,5 @@ func checkEnv(keys ...string) {
 			fmt.Printf("Missing environment variable %s", k)
 			os.Exit(1)
 		}
-	}
-}
-
-func checkName(n *string) {
-	fmt.Printf("The single \"*\" is not a valid search criteria")
-	if *n == "*" {
-		fmt.Println("The single \"*\" is not a valid search criteria")
-		os.Exit(1)
 	}
 }
