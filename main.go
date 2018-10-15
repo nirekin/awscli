@@ -73,6 +73,11 @@ func main() {
 		fmt.Println("No matching instance...")
 	}
 
+	if fName == "*" && fCommand != "" {
+		fmt.Printf("The command %s cannot be executed without any filter on the tag name content...", fCommand)
+		os.Exit(1)
+	}
+
 	if len(instances) > 0 && fCommand != "" {
 		fmt.Printf("Running command :%s\n", fCommand)
 		switch fCommand {
