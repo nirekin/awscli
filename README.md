@@ -56,6 +56,7 @@ This output shows:
 Examples:
 
 > `awscli -name testContent* -cmd STOP`
+
 > `awscli -name testContent* -cmd TERMINATE`
 ****
 
